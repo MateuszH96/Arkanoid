@@ -18,7 +18,7 @@ Arkanoid in OpenGL
 ## Usage
 1. Clone the repository by running the command below on your git terminal
 ```
-git clone https://github.com/Mat16eusz/Arkanoid-OpenGL.git
+git clone https://github.com/MateuszH96/Arkanoid.git
 ```
 2. Open the project in VisualStudio.
 3. Download the ``glutdlls37beta.zip`` file from https://www.opengl.org/resources/libraries/glut/glut_downloads.php and https://github.com/g-truc/glm
