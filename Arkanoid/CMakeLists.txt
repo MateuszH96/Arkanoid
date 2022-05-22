@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 3.23)
+set(This Arkanoid)
+project(${This})
+set(CMAKE_CXX_STANDARD 11)
+set(NAME_EXE source/main.cpp)
+
+add_executable(${This} ${NAME_EXE})
+add_subdirectory(source)
+target_link_libraries(${This} SRC)
+target_link_libraries(${This} -lglut -lGLU -lGL)
