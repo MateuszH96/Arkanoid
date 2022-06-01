@@ -140,7 +140,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="display.cpp" />
+    <ClCompile Include="game_physics.cpp" />
+    <ClCompile Include="init.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="define_vars.h" />
+    <ClInclude Include="display.h" />
+    <ClInclude Include="game_physics.h" />
+    <ClInclude Include="init.h" />
+    <ClInclude Include="struct.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
