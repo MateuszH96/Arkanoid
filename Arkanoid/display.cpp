@@ -3,6 +3,7 @@
 #include <glm/gtc/constants.hpp>
 
 #include "display.h"
+#include <iostream>
 
 #include "define_vars.h"
 #include "struct.h"
@@ -11,20 +12,52 @@ extern struct BLOCK blocks[BLOCK_ROW_MAX][BLOCK_COLUMN_MAX];
 extern struct BALL ball;
 extern struct PALETTE palette;
 
-/**
- * Function that displays blocks, paddle and ball.
- *
- * @brief Displays the game board.
- */
-void display(void)
+void drawCircle(unsigned const numOfTringle, int const ballScale)
+{
+    glPushMatrix();
+    {
+        glTranslatef(ball.position.x, ball.position.y, 0);
+        glScalef(ballScale, ballScale, 0);
+        glBegin(GL_TRIANGLE_FAN);
+        {
+            glVertex2f(0, 0);
+            for (unsigned i = 0; i <= numOfTringle; i++)
+            {
+                float r = glm::pi<float>() * 2 * i / numOfTringle;
+                glVertex2f(cosf(r), -sinf(r));
+            }
+        }
+        glEnd();
+    }
+    glPopMatrix();
+}
+
+void drawRectangle(unsigned const width, unsigned const height, unsigned const x, unsigned const y, unsigned const offset)
+{
+    glPushMatrix();
+    {
+
+        glTranslated(x, y, 0);
+        glBegin(GL_QUADS);
+        {
+            glVertex2d(0, 0);
+            glVertex2d(0, height - offset);
+            glVertex2d(width - offset, height - offset);
+            glVertex2d(width - offset, 0);
+        }
+        glEnd();
+    }
+    glPopMatrix();
+}
+void background(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluOrtho2D(0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-
+}
+void drawBlocks(void)
+{
     for (int y = 0; y < BLOCK_ROW_MAX; y++)
     {
         const unsigned char colors[][3] = {
@@ -33,9 +66,8 @@ void display(void)
             {0x00, 0xff, 0x00},
             {0x00, 0xff, 0xff},
             {0x00, 0x00, 0xff},
-            {0xff, 0x00, 0xff}
-        };
-        glColor3ubv((GLubyte*)&colors[y]);
+            {0xff, 0x00, 0xff}};
+        glColor3ubv((GLubyte *)&colors[y]);
 
         for (int x = 0; x < BLOCK_COLUMN_MAX; x++)
         {
@@ -43,54 +75,27 @@ void display(void)
             {
                 continue;
             }
-            glPushMatrix();
-            {
-                glTranslated(BLOCK_WIDTH * x, BLOCK_HEIGHT * y, 0);
-                glBegin(GL_QUADS);
-                {
-                    glVertex2d(0, 0);
-                    glVertex2d(0, BLOCK_HEIGHT - 1);
-                    glVertex2d(BLOCK_WIDTH - 1, BLOCK_HEIGHT - 1);
-                    glVertex2d(BLOCK_WIDTH - 1, 0);
-                }
-                glEnd();
-            }
-            glPopMatrix();
+            drawRectangle(BLOCK_WIDTH, BLOCK_HEIGHT, x * BLOCK_WIDTH, y * BLOCK_HEIGHT, 1);
         }
     }
-
+}
+void models(void)
+{
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    drawBlocks();
     glColor3ub(0xff, 0xff, 0xff);
-    glPushMatrix();
-    {
-        glTranslatef(palette.position.x, palette.position.y, 0);
-        glBegin(GL_QUADS);
-        {
-            glVertex2d(0, 0);
-            glVertex2d(0, PADDLE_HEIGHT);
-            glVertex2d(PADDLE_WIDTH, PADDLE_HEIGHT);
-            glVertex2d(PADDLE_WIDTH, 0);
-        }
-        glEnd();
-    }
-    glPopMatrix();
-
-    glPushMatrix();
-    {
-        glTranslatef(ball.position.x, ball.position.y, 0);
-        glScalef(BALL_SCALE, BALL_SCALE, 0);
-        glBegin(GL_TRIANGLE_FAN);
-        {
-            glVertex2f(0, 0);
-            int n = 32;
-            for (int i = 0; i < n + 1; i++)
-            {
-                float r = glm::pi<float>() * 2 * i / n;
-                glVertex2f(cosf(r), -sinf(r));
-            }
-        }
-        glEnd();
-    }
-    glPopMatrix();
-
+    drawRectangle(PADDLE_WIDTH, PADDLE_HEIGHT, palette.position.x, palette.position.y);
+    drawCircle(NUM_OF_TRIANGLE, BALL_SCALE);
+}
+/**
+ * Function that displays blocks, paddle and ball.
+ *
+ * @brief Displays the game board.
+ */
+void display(void)
+{
+    background();
+    models();
     glutSwapBuffers();
 }
