@@ -33,7 +33,14 @@ var menudata={children:[
 {text:"Pliki",url:"files.html",children:[
 {text:"Lista plików",url:"files.html"},
 {text:"Składowe plików",url:"globals.html",children:[
-{text:"Wszystko",url:"globals.html"},
+{text:"Wszystko",url:"globals.html",children:[
+{text:"b",url:"globals.html#index_b"},
+{text:"d",url:"globals.html#index_d"},
+{text:"i",url:"globals.html#index_i"},
+{text:"m",url:"globals.html#index_m"},
+{text:"n",url:"globals.html#index_n"},
+{text:"p",url:"globals.html#index_p"},
+{text:"w",url:"globals.html#index_w"}]},
 {text:"Funkcje",url:"globals_func.html"},
 {text:"Zmienne",url:"globals_vars.html"},
 {text:"Definicje",url:"globals_defs.html"}]}]}]}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['velocity_0',['velocity',['../struct_b_a_l_l.html#aa922cd0626d5281ecee2536be4b19e94',1,'BALL']]]
+  ['num_5fof_5ftriangle_0',['NUM_OF_TRIANGLE',['../display_8h.html#ad09e8b17c15c7a7e52bbc6cecf3aaed2',1,'display.h']]]
 ];

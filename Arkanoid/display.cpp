@@ -52,7 +52,6 @@ void drawRectangle(int const width, int const height, int const x, int const y, 
 {
     glPushMatrix();
     {
-
         glTranslated(x, y, 0);
         glBegin(GL_QUADS);
         {
