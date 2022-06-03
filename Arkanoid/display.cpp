@@ -3,17 +3,20 @@
 #include <glm/gtc/constants.hpp>
 
 #include "display.h"
+
 #include "define_vars.h"
 #include "struct.h"
 
 extern struct BLOCK blocks[BLOCK_ROW_MAX][BLOCK_COLUMN_MAX];
 extern struct BALL ball;
 extern struct PALETTE palette;
-/** Function that draws circle
- * @brief Draw circle
+
+/**
+ * Function that draws circle.
  * 
- * @param numOfTringle number of trigles that make circle
- * @param ballScale size of ball
+ * @brief Draw circle.
+ * @param numOfTringle number of trigles that make circle.
+ * @param ballScale size of ball.
  */
 void drawCircle(unsigned const numOfTringle, int const ballScale)
 {
@@ -34,14 +37,16 @@ void drawCircle(unsigned const numOfTringle, int const ballScale)
     }
     glPopMatrix();
 }
-/** Function thast draws rectangle
- * @brief Draw rectangle
- * 
- * @param width width of rectangle to draw
- * @param height height of rectangle to draw
- * @param x rectangle position on x-axis
- * @param y rectangle position on y-axis
- * @param offset parameter of distance between rectangles, default value is 0
+
+/**
+ * Function thast draws rectangle.
+ *
+ * @brief Draw rectangle.
+ * @param width width of rectangle to draw.
+ * @param height height of rectangle to draw.
+ * @param x rectangle position on x-axis.
+ * @param y rectangle position on y-axis.
+ * @param offset parameter of distance between rectangles, default value is 0.
  */
 void drawRectangle(int const width, int const height, int const x, int const y, unsigned const offset)
 {
@@ -60,10 +65,13 @@ void drawRectangle(int const width, int const height, int const x, int const y, 
     }
     glPopMatrix();
 }
-/** Function that preapre background
- * @brief Draw backgound 
+
+/**
+ * Function that preapre background.
  * 
+ * @brief Draw backgound.
  */
+
 void background(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -71,9 +79,11 @@ void background(void)
     glLoadIdentity();
     gluOrtho2D(0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 }
-/** Function that draws blocks
- * @brief Draw blocks 
+
+/**
+ * Function that draws blocks.
  * 
+ * @brief Draw blocks.
  */
 void drawBlocks(void)
 {
@@ -98,9 +108,11 @@ void drawBlocks(void)
         }
     }
 }
-/** Function that initiate draws every elements like block, paddle and ball
- * @brief Draw playable models 
+
+/**
+ * Function that initiate draws every elements like block, paddle and ball.
  * 
+ * @brief Draw playable models.
  */
 void models(void)
 {
@@ -111,6 +123,7 @@ void models(void)
     drawRectangle(PADDLE_WIDTH, PADDLE_HEIGHT, palette.position.x, palette.position.y);
     drawCircle(NUM_OF_TRIANGLE, BALL_SCALE);
 }
+
 /**
  * Main function that displays every part of game.
  *

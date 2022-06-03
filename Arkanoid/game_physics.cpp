@@ -1,7 +1,7 @@
 #include <GL/glut.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/constants.hpp>
-//#include <Windows.h>
+#include <Windows.h>
 
 #include "game_physics.h"
 
@@ -33,7 +33,7 @@ void idle(void)
     }
     if (winGame == BLOCK_COLUMN_MAX * BLOCK_ROW_MAX)
     {
-       // MessageBox(NULL, L"Wygra�e�!", L"Koniec gry", 0);
+        MessageBox(NULL, L"Wygra�e�!", L"Koniec gry", 0);
         exit(0);
     }
 
@@ -42,7 +42,7 @@ void idle(void)
 
     if ((ball.position.y >= WINDOW_HEIGHT))
     {
-        //MessageBox(NULL, L"Game Over", L"Koniec gry", 0);
+        MessageBox(NULL, L"Game Over", L"Koniec gry", 0);
 
         init();
         glutPostRedisplay();
@@ -101,6 +101,6 @@ void idle(void)
 void passiveMotion(int _x, int _y)
 {
     palette.position.x = (float)_x - PADDLE_WIDTH / 2;
-    palette.position.x=palette.position.x < 0.0 ? 0.0 : palette.position.x;
-    palette.position.x=palette.position.x > WINDOW_WIDTH-PADDLE_WIDTH ? WINDOW_WIDTH-PADDLE_WIDTH : palette.position.x;
+    palette.position.x = palette.position.x < 0.0 ? 0.0 : palette.position.x;
+    palette.position.x = palette.position.x > WINDOW_WIDTH-PADDLE_WIDTH ? WINDOW_WIDTH-PADDLE_WIDTH : palette.position.x;
 }
