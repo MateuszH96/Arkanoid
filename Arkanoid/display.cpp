@@ -3,15 +3,18 @@
 #include <glm/gtc/constants.hpp>
 
 #include "display.h"
-#include <iostream>
-
 #include "define_vars.h"
 #include "struct.h"
 
 extern struct BLOCK blocks[BLOCK_ROW_MAX][BLOCK_COLUMN_MAX];
 extern struct BALL ball;
 extern struct PALETTE palette;
-
+/** Function that draws circle
+ * @brief Draw circle
+ * 
+ * @param numOfTringle number of trigles that make circle
+ * @param ballScale size of ball
+ */
 void drawCircle(unsigned const numOfTringle, int const ballScale)
 {
     glPushMatrix();
@@ -31,8 +34,16 @@ void drawCircle(unsigned const numOfTringle, int const ballScale)
     }
     glPopMatrix();
 }
-
-void drawRectangle(unsigned const width, unsigned const height, unsigned const x, unsigned const y, unsigned const offset)
+/** Function thast draws rectangle
+ * @brief Draw rectangle
+ * 
+ * @param width width of rectangle to draw
+ * @param height height of rectangle to draw
+ * @param x rectangle position on x-axis
+ * @param y rectangle position on y-axis
+ * @param offset parameter of distance between rectangles, default value is 0
+ */
+void drawRectangle(int const width, int const height, int const x, int const y, unsigned const offset)
 {
     glPushMatrix();
     {
@@ -49,6 +60,10 @@ void drawRectangle(unsigned const width, unsigned const height, unsigned const x
     }
     glPopMatrix();
 }
+/** Function that preapre background
+ * @brief Draw backgound 
+ * 
+ */
 void background(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
@@ -56,6 +71,10 @@ void background(void)
     glLoadIdentity();
     gluOrtho2D(0, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 }
+/** Function that draws blocks
+ * @brief Draw blocks 
+ * 
+ */
 void drawBlocks(void)
 {
     for (int y = 0; y < BLOCK_ROW_MAX; y++)
@@ -79,6 +98,10 @@ void drawBlocks(void)
         }
     }
 }
+/** Function that initiate draws every elements like block, paddle and ball
+ * @brief Draw playable models 
+ * 
+ */
 void models(void)
 {
     glMatrixMode(GL_MODELVIEW);
@@ -89,7 +112,7 @@ void models(void)
     drawCircle(NUM_OF_TRIANGLE, BALL_SCALE);
 }
 /**
- * Function that displays blocks, paddle and ball.
+ * Main function that displays every part of game.
  *
  * @brief Displays the game board.
  */
